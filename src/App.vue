@@ -2,10 +2,31 @@
   <h1>{{title}}</h1>
   <h6>Welcome ...</h6>
   <br>
-  <div v-if="showModal">
-    <Modal :header="header" :text="text" theme="sale" @passToggleModalfromApp="toggleModal"/>
+  <div v-if="showModal"> 
+    <Modal @passToggleModalfromApp="toggleModal">
+      <template v-slot:linksToModal>
+        <a href="#">Sign up now!</a>
+        <br>
+        <br>
+        <br>
+        <a href="#">Click for more INFO!</a>
+      </template> 
+      <h1>My First Vue App</h1>
+      <p>SignUp for the give away!</p>
+    </Modal>
   </div>
   <button @click="toggleModal">Open Modal</button>
+  <br>
+  <div v-if="showModalTwo"> 
+    <Modal @passToggleModalfromApp="toggleModalTwo">
+      <template v-slot:linksToModal>
+        <a href="#">Sign out now!</a>
+      </template> 
+      <h1>This is the second Modal using the same component</h1>
+      <p>Lets check how it will works....</p>
+    </Modal>
+  </div>
+  <button @click="toggleModalTwo">Open Modal Two</button>
 </template>
 
 <script>
@@ -19,12 +40,16 @@ export default {
       title: 'My First Vue App :)',
       header: "SignUp for the give away!",
       text: "Grab Item",
-      showModal: false
+      showModal: false,
+      showModalTwo: false
     }
   },
   methods: {
     toggleModal() {
       this.showModal = !this.showModal
+    },
+    toggleModalTwo() {
+      this.showModalTwo = !this.showModalTwo
     }
   }
 }

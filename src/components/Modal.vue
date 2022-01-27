@@ -1,16 +1,17 @@
 <template>
-    <div class="backdrop" >
+    <div class="backdrop" @click.self="closeModal">
         <div class="modal" :class="{ sale: theme === 'sale'}" >
-            <h1>{{ header }}</h1>
-            <p>{{text}}</p>
-            <button @click="closeModal">Close Modal</button>
+          <slot></slot> 
+          <div class="actions">
+            <slot name = "linksToModal"></slot>
+          </div>           
         </div>
     </div>
 </template>
 
 <script>
 export default {
-    props: ['header','text', 'theme'],
+    props: ['theme'],
     methods: {
         closeModal() {
             this.$emit('passToggleModalfromApp')
@@ -36,7 +37,7 @@ export default {
     height: 100%;
   }
   .modal h1 {
-    color: #03cfb4;
+    color:  rgb(29, 3, 3);
     border: none;
     padding: 0;
   }
@@ -44,10 +45,23 @@ export default {
     font-style: normal;
   }
   .modal.sale h1,p{
-    color: rgb(9, 38, 65);
+    color:  rgb(29, 3, 3);
   }
   .modal.sale{
     background: rgb(138, 39, 39);
+  }
+  .modal .actions {
+    text-align: center;
+    margin: 30px 0 10px 0;
+    color:  #eee;
+  }
+  .modal .actions a {
+    
+    padding: 8px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    text-decoration: none;
+    margin: 10px;
   }
   
 
