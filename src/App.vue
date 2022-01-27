@@ -2,7 +2,7 @@
   <h1>{{title}}</h1>
   <h6>Welcome ...</h6>
   <br>
-  <div v-if="showModal"> 
+  <teleport to=".modals" v-if="showModal"> 
     <Modal @passToggleModalfromApp="toggleModal">
       <template v-slot:linksToModal>
         <a href="#">Sign up now!</a>
@@ -14,7 +14,7 @@
       <h1>My First Vue App</h1>
       <p>SignUp for the give away!</p>
     </Modal>
-  </div>
+  </teleport>
   <button @click="toggleModal">Open Modal</button>
   <br>
   <div v-if="showModalTwo"> 
@@ -56,7 +56,7 @@ export default {
 </script>
 
 <style>
-#app {
+#app, .modals{
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
